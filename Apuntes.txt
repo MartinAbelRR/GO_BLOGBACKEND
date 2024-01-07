@@ -1,0 +1,11 @@
+* Modulos necesarios para la construcción de la aplicación.
+  ORM: go get -u gorm.io/gorm 
+  Driver: go get -u gorm.io/driver/mysql
+  Framework Fiber: go get github.com/gofiber/fiber/v2
+  GoDotEnv: go get github.com/joho/godotenv (Cargar variables de   entorno desde un archivo .env)
+  Encriptar: go get golang.org/x/crypto/bcrypt
+  JWT: go get -u github.com/dgrijalva/jwt-go
+
+* Desplegar el backend con Railway
+  - MySQL (Configurar la variable de entorno DSN).
+  - El proyecto backend subido a github (Contiene las APIs).

@@ -5,6 +5,7 @@ import (
 	"os"
 
 	"github.com/MartinAbelRR/blogbackend/database"
+	"github.com/MartinAbelRR/blogbackend/middlewares"
 	"github.com/MartinAbelRR/blogbackend/routes"
 	"github.com/gofiber/fiber/v2"
 	"github.com/joho/godotenv"
@@ -22,6 +23,9 @@ func main() {
 	port := os.Getenv("PORT")
 
 	app := fiber.New()
+	
+	// // Initialize Cors
+	middlewares.Cors(app)
 
 	routes.Setup(app)
 

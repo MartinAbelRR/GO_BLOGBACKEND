@@ -13,23 +13,23 @@ import (
 	"gorm.io/gorm"
 )
 
-func CreatePost(c *fiber.Ctx) error {
-	var blogpost models.Blog
-	if err := c.BodyParser(&blogpost); err != nil {
-		fmt.Println("Unable to parse body")
-	}
+	func CreatePost(c *fiber.Ctx) error {
+		var blogpost models.Blog
+		if err := c.BodyParser(&blogpost); err != nil {
+			fmt.Println("Unable to parse body")
+		}
 
-	if err := database.DB.Create(&blogpost).Error; err != nil {
-		c.Status(400)
-		c.JSON(fiber.Map{
-			"message": "Invalid payload",
+		if err := database.DB.Create(&blogpost).Error; err != nil {
+			c.Status(400)
+			c.JSON(fiber.Map{
+				"message": "Invalid payload",
+			})
+		}
+
+		return c.JSON(fiber.Map{
+			"message": "Contratulation!, Your post is live",		
 		})
 	}
-
-	return c.JSON(fiber.Map{
-		"message": "Contratulation!, Your post is live",		
-	})
-}
 
 func AllPost(c *fiber.Ctx) error {
 	// Gets the page number of the URL, If not provided, it is set to 1 by default.

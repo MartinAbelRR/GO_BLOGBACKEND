@@ -11,7 +11,6 @@ import (
 	"github.com/MartinAbelRR/blogbackend/database"
 	"github.com/MartinAbelRR/blogbackend/models"
 	"github.com/MartinAbelRR/blogbackend/utils"
-	"github.com/dgrijalva/jwt-go"
 	"github.com/gofiber/fiber/v2"
 )
 
@@ -53,7 +52,7 @@ func Resgister(c *fiber.Ctx) error {
 	}
 
 	user := models.User{
-		FirsName: data["first_name"].(string),
+		FirstName: data["first_name"].(string),
 		LastName: data["last_name"].(string),
 		Phone: data["phone"].(string),
 		Email: strings.TrimSpace(data["email"].(string)),
@@ -119,6 +118,17 @@ func Login(c *fiber.Ctx) error {
 
 }
 
-type Claims struct {
-	jwt.StandardClaims
+func Logout(c *fiber.Ctx) error {
+	cookie := fiber.Cookie{
+		Name: "jwt",
+		Value: "",
+		Expires: time.Now().Add(-time.Hour),
+		HTTPOnly: true,
+	}
+
+	c.Cookie(&cookie)
+
+	return c.JSON(fiber.Map{
+		"message": "yo have succesfully logout",
+	})
 }
