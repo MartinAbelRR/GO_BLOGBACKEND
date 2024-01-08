@@ -8,7 +8,7 @@ import (
 func Cors(app *fiber.App) {
 	
 	app.Use(cors.New(cors.Config{
-		AllowOrigins: "https://martinabelrr.github.io/GO_BLOGFRONTEND",		
+		AllowOrigins: "https://martinabelrr.github.io",		
 		AllowHeaders:  "Origin, Content-Type, Accept",
 		AllowCredentials: true,
 	}))
