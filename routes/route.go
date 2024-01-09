@@ -2,7 +2,7 @@ package routes
 
 import (
 	"github.com/MartinAbelRR/blogbackend/controllers"
-	// "github.com/MartinAbelRR/blogbackend/middlewares"
+	"github.com/MartinAbelRR/blogbackend/middlewares"
 	"github.com/gofiber/fiber/v2"
 )
 
@@ -13,7 +13,7 @@ func Setup(app *fiber.App){
 	app.Post("/api/login", controllers.Login)
 	app.Post("/api/logout", controllers.Logout)
 	
-	// app.Use(middlewares.IsAuthenticate)
+	app.Use(middlewares.IsAuthenticate)
 	
 	app.Post("/api/post", controllers.CreatePost)
 	app.Get("/api/allpost", controllers.AllPost)
